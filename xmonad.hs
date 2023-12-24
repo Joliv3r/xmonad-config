@@ -13,6 +13,7 @@ import System.Exit
 import XMonad.Util.SpawnOnce
 import XMonad.Util.Run
 import XMonad.Hooks.ManageDocks
+import Graphics.X11.ExtraTypes.XF86
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
@@ -82,6 +83,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     --  Reset the layouts on the current workspace to default
     , ((modm .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf)
+
+    --  Brightness control
+    , ((0, xF86XK_MonBrightnessUp    ), spawn "brightnessctl set +10%")
+    , ((0, xF86XK_MonBrightnessDown    ), spawn "brightnessctl set 10%-")
 
     -- Resize viewed windows to the correct size
     , ((modm,               xK_n     ), refresh)
@@ -259,7 +264,7 @@ myStartupHook = do
 -- Run xmonad with the settings you specify. No need to modify this.
 --
 main = do
-    xmproc <- spawnPipe "xmobar"
+    xmproc <- spawnPipe "xmobar /home/joliver/.xmonad/xmobarrc"
     xmonad $ docks $ defaults
 
 -- A structure containing your configuration settings, overriding

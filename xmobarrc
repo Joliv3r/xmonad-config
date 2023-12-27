@@ -23,9 +23,10 @@ Config { font = "mononoki-nerd-font"
                     , Run Com "uname" ["-s","-r"] "" 36000
                     , Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
                     , Run BatteryP ["BAT1"] ["-t", "<acstatus>", "-L", "10", "-H", "80", "-l", "red", "-h", "green", "--", "-O", "Charging: <left>%", "-o", "Battery: <left>%"] 10
+                    , Run Volume "default" "Master" [] 5
                     ]
        , sepChar = "%"
        , alignSep = "}{"
        , template = "%cpu% | %memory% * %swap% | %wi% }\
-                    \{ <fc=#ee9a00>%date%</fc>| %battery% | %uname%"
+                    \{ <fc=#ee9a00>%date%</fc>| %battery% | %default:Master% | %uname%"
        }

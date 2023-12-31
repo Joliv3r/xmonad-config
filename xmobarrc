@@ -1,4 +1,4 @@
-Config { font = "mononoki-nerd-font"
+Config { font = "Mononoki Nerd Font"
        , additionalFonts = []
        , borderColor = "black"
        , border = TopB
